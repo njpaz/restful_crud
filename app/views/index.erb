@@ -1,0 +1,24 @@
+<div class="container">
+  <p>Your notes:</p>
+  <% @all_notes.each do |note| %>
+    <p><%= note.id %> <%= note.text %></p>
+    <form action="/update/<%= note.id %>" method="post">
+      <input type="hidden" name="_method" value="put">
+      <label for="update_note">Update note <%= note.id %>:</label><br>
+      <input id="update_note" name="text" type="text">
+      <input type="submit" value="Edit!">
+    </form>
+    <br>
+    <form action="/delete/<%= note.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <label for="delete_note">Delete note:</label>
+      <input type="submit" value="Delete!">
+    </form>
+  <% end %>
+  <br>
+  <form action="/new" method="post">
+    <label for="new_note">Create a new note:</label><br>
+    <input type="text" id="new_note" name="text">
+    <input type="submit" value="Create!">
+  </form>
+</div>
